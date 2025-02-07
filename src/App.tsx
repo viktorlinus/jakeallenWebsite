@@ -35,7 +35,7 @@ function App() {
           </div>
           <div className="relative">
             <img 
-              src="/cr=w_1002,h_1000.webp"
+              src="/hero-image.webp"
               alt="Jake Allen - Performance Coach"
               className="rounded-2xl shadow-2xl w-full h-auto"
             />
@@ -203,7 +203,7 @@ function App() {
             </div>
             <div className="relative">
               <img 
-                src="/rs=w_400,cg_true.webp"
+                src="/training-image.webp"
                 alt="Jake Allen Training"
                 className="rounded-2xl shadow-2xl w-full h-auto"
               />
