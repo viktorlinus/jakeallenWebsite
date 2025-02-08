@@ -2,11 +2,6 @@
   command = "npm run build"
   publish = "dist"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
 [[headers]]
   for = "/*"
   [headers.values]
@@ -20,3 +15,11 @@
   uploadDir = "public/images"
   buildCommand = "npm run build"
   devCommand = "npm run dev"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[git]
+  repo = "viktorlinus/jakeallenWebsite"
+  branch = "main"
+  auth = true
