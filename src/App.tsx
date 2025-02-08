@@ -11,7 +11,21 @@ import {
   BarChart3
 } from 'lucide-react';
 
+// Add TypeScript interface for window.Calendly
+declare global {
+  interface Window {
+    Calendly?: any;
+  }
+}
+
 function App() {
+  // Update document title
+  React.useEffect(() => {
+    document.title = "Jake Allen | Elite Performance Coach";
+  }, []);
+
+  const calendlyUrl = 'https://calendly.com/coachjakeallen/athlete-check-in';
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       {/* Hero Section */}
@@ -26,11 +40,16 @@ function App() {
               Remote and In-Person Packages Available.
             </p>
             <div className="space-y-4">
-              <button className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg flex items-center hover:bg-blue-700 transition-colors">
-                Book Your Free Strategy Session
+              <a 
+                href={calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center hover:bg-blue-700 transition-colors"
+              >
+                Schedule Your Strategy Session
                 <ChevronRight className="ml-2" />
-              </button>
-              <p className="text-gray-500 text-sm">No pressure, just a conversation about how you can reach the next level.</p>
+              </a>
+              <p className="text-gray-500 text-sm">Free 30-minute consultation to discuss your goals and create a roadmap for success.</p>
             </div>
           </div>
           <div className="relative">
@@ -131,32 +150,68 @@ function App() {
                 ]
               }
             ].map((testimonial, i) => (
-              <div key={i} className="bg-white p-8 rounded-xl shadow-lg">
+              <div key={i} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <div className="flex items-start space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-2xl font-bold text-blue-600">{testimonial.name[0]}</span>
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-2xl font-bold text-white">{testimonial.name[0]}</span>
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold">{testimonial.name}</h3>
                     <p className="text-gray-600">
                       {testimonial.age} • {testimonial.location}
                     </p>
-                    <p className="text-blue-600 font-medium">
+                    <div className="mt-1 inline-block px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
                       {testimonial.sport || testimonial.profession}
-                    </p>
+                    </div>
                   </div>
                 </div>
                 <div className="space-y-4">
-                  {testimonial.quote.map((paragraph, j) => (
-                    <p key={j} className="text-gray-600">
-                      {paragraph}
-                    </p>
-                  ))}
+                  {testimonial.quote.map((paragraph, j) => {
+                    // Define highlighted phrases for each testimonial focusing on emotional impact and results
+                    const highlights = {
+                      "Alex": [
+                        "enjoyed our in-person sessions so much",
+                        "looking forward"
+                      ],
+                      "Andrew": [
+                        "reassured me every step of the way",
+                        "kept me accountable",
+                        "looking forward"
+                      ],
+                      "Jhonathan": [
+                        "lost 14 pounds in just 6 weeks",
+                        "enormous increase in my energy",
+                        "mood has felt happier",
+                        "much more productive"
+                      ],
+                      "Sandor": [
+                        "huge benefit to my sport performance",
+                        "great experience"
+                      ]
+                    };
+
+                    // Function to bold phrases
+                    const boldText = (text: string) => {
+                      let result = text;
+                      highlights[testimonial.name]?.forEach(phrase => {
+                        const regex = new RegExp(`(${phrase})`, 'gi');
+                        result = result.replace(regex, '<strong>$1</strong>');
+                      });
+                      return { __html: `"${result}"` };
+                    };
+
+                    return (
+                      <p 
+                        key={j} 
+                        className="text-gray-600 italic"
+                        dangerouslySetInnerHTML={boldText(paragraph)}
+                      />
+                    );
+                  })}
                 </div>
-                <div className="mt-6 flex items-center">
-                  {[...Array(5)].map((_, j) => (
-                    <Star key={j} className="h-5 w-5 text-yellow-400 fill-current" />
-                  ))}
+                <div className="mt-6 flex items-center text-blue-600">
+                  <CheckCircle2 className="h-5 w-5 mr-2" />
+                  <span className="text-sm font-medium">Verified Client</span>
                 </div>
               </div>
             ))}
@@ -281,10 +336,15 @@ function App() {
           <h2 className="text-3xl md:text-4xl font-bold mb-8">
             Ready to Achieve Peak Performance?
           </h2>
-          <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center hover:bg-gray-100 transition-colors">
-            Book Your Free Strategy Session
+          <a 
+            href={calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center hover:bg-gray-100 transition-colors"
+          >
+            Schedule Your Strategy Session
             <ChevronRight className="ml-2" />
-          </button>
+          </a>
         </div>
       </section>
     </div>
