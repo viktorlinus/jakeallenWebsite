@@ -1,52 +1,74 @@
 import { defineStackbitConfig } from '@stackbit/types';
+import { GitContentSource } from '@stackbit/cms-git';
 
 export default defineStackbitConfig({
   stackbitVersion: '~0.6.0',
   ssgName: 'custom',
   nodeVersion: '18',
   contentSources: [
-    {
-      name: 'git',
-      type: 'git',
-      models: ['Home']
-    }
-  ],
-  models: {
-    Home: {
-      type: 'page',
-      urlPath: '/',
-      file: 'public/content/home.json',
-      fields: [
-        { type: 'string', name: 'heroTitle', label: 'Hero Title' },
-        { type: 'text', name: 'heroDescription', label: 'Hero Description' },
+    new GitContentSource({
+      rootPath: __dirname,
+      contentDirs: ['public/content'],
+      models: [
         {
-          type: 'list',
-          name: 'services',
-          items: {
-            type: 'object',
-            fields: [
-              { type: 'string', name: 'title' },
-              { type: 'text', name: 'description' },
-              { type: 'string', name: 'icon' }
-            ]
-          }
-        },
-        {
-          type: 'list',
-          name: 'testimonials',
-          items: {
-            type: 'object',
-            fields: [
-              { type: 'string', name: 'name' },
-              { type: 'string', name: 'location' },
-              { type: 'string', name: 'age' },
-              { type: 'string', name: 'sport', required: false },
-              { type: 'string', name: 'profession', required: false },
-              { type: 'list', name: 'quote', items: { type: 'text' } }
-            ]
-          }
+          name: 'Home',
+          type: 'page',
+          urlPath: '/',
+          filePath: 'public/content/home.json',
+          fields: [
+            { name: 'heroTitle', type: 'string', required: true },
+            { name: 'heroDescription', type: 'text', required: true },
+            {
+              name: 'services',
+              type: 'list',
+              items: {
+                type: 'object',
+                fields: [
+                  { name: 'title', type: 'string', required: true },
+                  { name: 'description', type: 'text', required: true },
+                  {
+                    name: 'icon',
+                    type: 'enum',
+                    options: ['Target', 'Brain', 'Trophy'],
+                    required: true
+                  }
+                ]
+              }
+            },
+            {
+              name: 'testimonials',
+              type: 'list',
+              items: {
+                type: 'object',
+                fields: [
+                  { name: 'name', type: 'string', required: true },
+                  { name: 'location', type: 'string', required: true },
+                  { name: 'age', type: 'string', required: true },
+                  { name: 'sport', type: 'string' },
+                  { name: 'profession', type: 'string' },
+                  {
+                    name: 'quote',
+                    type: 'list',
+                    items: { type: 'text' },
+                    required: true
+                  }
+                ]
+              }
+            }
+          ]
         }
       ]
-    }
+    })
+  ],
+  // Define the site map to help editors navigate
+  siteMap: ({ documents }) => {
+    return documents
+      .filter((doc) => doc.modelName === 'Home')
+      .map((document) => ({
+        stableId: document.id,
+        urlPath: '/',
+        document,
+        isHomePage: true
+      }));
   }
 });
