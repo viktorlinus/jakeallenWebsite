@@ -1,0 +1,34 @@
+backend:
+  name: github
+  repo: viktorlinus/jakeallenWebsite
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "content"
+    label: "Site Content"
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "content/home.json"
+        fields:
+          - { label: "Hero Title", name: "heroTitle", widget: "string" }
+          - { label: "Hero Description", name: "heroDescription", widget: "text" }
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Icon", name: "icon", widget: "select", options: ["Target", "Brain", "Trophy"] }
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Age", name: "age", widget: "string" }
+              - { label: "Sport/Profession", name: "sportProfession", widget: "string" }
+              - { label: "Quote", name: "quote", widget: "list", field: { label: "Paragraph", name: "paragraph", widget: "text" } }

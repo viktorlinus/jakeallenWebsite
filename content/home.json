@@ -1,0 +1,46 @@
+{
+  "heroTitle": "ACHIEVING PEAK PERFORMANCE THROUGH OPTIMIZING HEALTH",
+  "heroDescription": "Helping you reach the top 1% of the 1% in your domain through personalized coaching and health optimization. Remote and In-Person Packages Available.",
+  "services": [
+    {
+      "title": "Sports Performance",
+      "description": "Expert coaching for Olympians, MLB All Stars, NBA Champions, and athletes at all levels. Customized programs for speed, agility, strength, power, endurance, and mobility.",
+      "icon": "Trophy"
+    },
+    {
+      "title": "Blood Panel Analysis",
+      "description": "As a Certified Metabolic Health Professional, I'll help you achieve optimal health ranges through personalized analysis and action plans.",
+      "icon": "Target"
+    },
+    {
+      "title": "Cognitive Coaching",
+      "description": "Unlock your brain's full potential with proven stress reduction strategies and customized nootropic protocols for elite performance.",
+      "icon": "Brain"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Alex",
+      "location": "New Zealand",
+      "sport": "Boxing",
+      "age": "32",
+      "quote": [
+        "I have been into combat sports since my teenage years and have always struggled to find a coach that could dynamically work with me.",
+        "I flew into Miami looking for a sharp trainer and luckily I found Jake. He knows his functional movements extremely well, along with the pros and cons of each exercise and movement.",
+        "I enjoyed our in-person sessions so much that I have been working with him through his remote coaching program ever since, and am looking forward to flying back to Miami soon to train with him in-person again."
+      ]
+    },
+    {
+      "name": "Andrew",
+      "location": "Ireland",
+      "sport": "Soccer",
+      "age": "25",
+      "quote": [
+        "From the initial consultation with Jake, I knew I was making the right decision by handing my training and rehab over to his expertise.",
+        "Jake has reassured me every step of the way through my MCL rehab, and has kept me accountable the entire time.",
+        "His programming really is tailored to my needs, and consistently altered with constant feedback after my training sessions.",
+        "He makes himself available 24/7 and I am looking forward to continue working with him well beyond my rehab process."
+      ]
+    }
+  ]
+}
