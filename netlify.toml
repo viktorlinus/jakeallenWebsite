@@ -7,11 +7,16 @@
   to = "/index.html"
   status = 200
 
-# Enable HTTPS and force it
 [[headers]]
   for = "/*"
   [headers.values]
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-    X-Content-Type-Options = "nosniff"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
+
+[stackbit]
+  containerCommand = "npm run dev"
+  staticDir = "dist"
+  uploadDir = "public/images"
+  buildCommand = "npm run build"
+  devCommand = "npm run dev"
